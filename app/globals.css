@@ -1,0 +1,43 @@
+@import "tailwindcss";
+
+@theme {
+  /* Colors */
+  --color-background: #FFFEF5;
+  --color-foreground: #2A2A2A;
+  --color-forest: #283618;
+  --color-sage: #E9EDC9;
+  --color-meadow: #CCD5AE;
+  --color-beige: #FEFAE0;
+  --color-stone: #9B9891;
+  --color-warm-white: #FFFEF5;
+
+  /* Typography */
+  --font-display: var(--font-fraunces), serif;
+  --font-sans: var(--font-outfit), sans-serif;
+
+  /* Animations */
+  --ease-signature: cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+/* Hide default cursor universally */
+* {
+  cursor: none !important;
+}
+
+/* Global Styles */
+body {
+  background: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+}
+
+/* Utility for display headers */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-display);
+}
