@@ -8,9 +8,9 @@ export default function OrganicCursor() {
     const mouseX = useMotionValue(0);
     const mouseY = useMotionValue(0);
 
-    // Smooth spring animation
-    const cursorX = useSpring(mouseX, { damping: 30, stiffness: 200 });
-    const cursorY = useSpring(mouseY, { damping: 30, stiffness: 200 });
+    // Smooth spring animation - critically damped to prevent oscillation
+    const cursorX = useSpring(mouseX, { damping: 40, stiffness: 400 });
+    const cursorY = useSpring(mouseY, { damping: 40, stiffness: 400 });
 
     useEffect(() => {
         setIsMounted(true);
@@ -28,9 +28,9 @@ export default function OrganicCursor() {
 
     return (
         <>
-            {/* Main cursor dot */}
+            {/* Main cursor dot - smaller and more precise */}
             <motion.div
-                className="fixed top-0 left-0 w-3 h-3 bg-sage rounded-full pointer-events-none mix-blend-difference"
+                className="fixed top-0 left-0 w-2 h-2 bg-sage rounded-full pointer-events-none mix-blend-difference"
                 style={{
                     x: cursorX,
                     y: cursorY,
@@ -39,9 +39,9 @@ export default function OrganicCursor() {
                     zIndex: 99999,
                 }}
             />
-            {/* Trailing aura */}
+            {/* Trailing aura - smaller and cleaner */}
             <motion.div
-                className="fixed top-0 left-0 w-10 h-10 bg-sage/40 rounded-full pointer-events-none blur-lg"
+                className="fixed top-0 left-0 w-6 h-6 bg-sage/30 rounded-full pointer-events-none blur-md"
                 style={{
                     x: cursorX,
                     y: cursorY,

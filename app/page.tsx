@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useLayoutEffect, useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion } from 'framer-motion';
 import ServiceCard from "./components/ServiceCard";
 import Image from "next/image";
 import Gallery from "./components/Gallery";
@@ -10,103 +10,104 @@ import Marquee from "react-fast-marquee";
 import { Scissors, Leaf, Flower2, Sparkles, Hammer, Instagram, Facebook, Linkedin } from "lucide-react";
 import BookingModal from "./components/BookingModal";
 import FloatingCTA from "./components/FloatingCTA";
+import SideNav from "./components/SideNav";
 
 const services = [
   {
-    title: "Lawn care & maintenance",
-    description: "Regular mowing, edging, and care that keeps your lawn healthy and green all season.",
+    title: "Lawn Care & Maintenance",
+    description: "Specialized care for St. Augustine and Zoysia. We keep your turf emerald green and pest-free year-round.",
     icon: <Scissors className="w-full h-full" strokeWidth={1.5} />,
     pricing: "From $150/mo",
-    details: ["Weekly mowing & edging", "Fertilization program", "Weed control", "Aeration once/year"]
+    details: ["Weekly mowing", "Weed control", "Fertilization", "Pest management"]
   },
   {
-    title: "Garden design & planting",
-    description: "Custom layouts with plants that thrive. We create spaces that feel balanced and natural.",
+    title: "Tropical Design & Planting",
+    description: "Custom layouts that handle the heat. We create resort-style spaces that feel lush and private.",
     icon: <Flower2 className="w-full h-full" strokeWidth={1.5} />,
     pricing: "Custom Quote",
-    details: ["3D rendering included", "Native plant selection", "Soil preparation", "Maintenance plan"]
+    details: ["3D rendering included", "Native & Salt-tolerant selection", "Soil preparation", "Installation"]
   },
   {
-    title: "Hedge trimming & shaping",
-    description: "Precise cutting and shaping for clean lines and healthy growth.",
+    title: "Palm & Hedge Sculpting",
+    description: "Precise canopy thinning and shaping. We keep palms safe for storm season and hedges clean.",
     icon: <Scissors className="w-full h-full" strokeWidth={1.5} />,
     pricing: "From $200",
-    details: ["Geometric shaping", "Health pruning", "Debris removal", "Height reduction"]
+    details: ["Diamond cutting", "Health pruning", "Storm safety", "Debris removal"]
   },
   {
-    title: "Seasonal cleanup",
-    description: "Spring prep and fall cleanup. We handle debris, mulching, and seasonal transitions.",
+    title: "Storm Prep & Seasonal Cleanup",
+    description: "Hurricane season prep and spring revitalization. We handle heavy debris, coconut removal, and mulching.",
     icon: <Leaf className="w-full h-full" strokeWidth={1.5} />,
     pricing: "From $400",
-    details: ["Leaf removal", "Mulch application", "Plant splitting", "Winter protection"]
+    details: ["Frond removal", "Mulch application", "Coconut removal", "Debris hauling"]
   },
   {
-    title: "Outdoor upgrades",
-    description: "Pathways, stone features, lighting. We enhance your space with lasting improvements.",
+    title: "Outdoor Upgrades",
+    description: "Pool decks, travertine, and lighting. We enhance your outdoor living space with lasting improvements.",
     icon: <Hammer className="w-full h-full" strokeWidth={1.5} />,
     pricing: "Custom Quote",
-    details: ["Stone pathways", "Low-voltage lighting", "Retaining walls", "Fire pits"]
+    details: ["Travertine pavers", "Low-voltage lighting", "Retaining walls", "Walkways"]
   },
   {
-    title: "Irrigation & drainage",
-    description: "Smart watering systems and proper drainage solutions. Keep your landscape healthy year-round.",
+    title: "Irrigation & Drainage",
+    description: "Smart watering and flood prevention. We fix broken heads and install drainage to keep your foundation dry.",
     icon: <Sparkles className="w-full h-full" strokeWidth={1.5} />,
     pricing: "From $350",
-    details: ["Drip irrigation", "Smart controllers", "French drains", "System audit"]
+    details: ["Sprinkler repair", "French drains", "System audit", "Flood prevention"]
   },
 ];
 
 const testimonials = [
   {
     text: "They transformed our yard and it didn't even feel like work was being done. Super chill, super professional.",
-    author: "- Sarah, Pacific Heights"
+    author: "- Sarah, Coral Gables"
   },
   {
-    text: "Our backyard was basically a dirt patch with some weeds. Now? It's where we spend every weekend. They killed it.",
-    author: "- Mike, Noe Valley"
+    text: "Our backyard was basically a sandspur patch with some weeds. Now? It's where we spend every weekend. They killed it.",
+    author: "- Mike, Boca Raton"
   },
   {
-    text: "Clean, professional, and always on time. Our yard has never looked better.",
-    author: "- David, Marina District"
+    text: "Clean, professional, and always on time. Our palms have never looked better.",
+    author: "- David, Fort Lauderdale"
   },
   {
-    text: "Best landscaping decision we made.",
-    author: "- Jen, Richmond"
+    text: "Best landscaping decision we made. Finally, someone who understands drainage.",
+    author: "- Jen, Naples"
   },
   {
-    text: "i was skeptical at first but wow... the difference is night and day. they really know what they're doing. highly recommend",
-    author: "- Alex, Mission District"
+    text: "I was skeptical at first but wow... the difference is night and day. They really know what they're doing. Highly recommend.",
+    author: "- Alex, Wynwood"
   },
   {
     text: "Finally, a landscaping company that actually listens. No upselling, no BS. Just great work.",
-    author: "- Rachel, Sunset"
+    author: "- Rachel, Winter Park"
   },
   {
     text: "Our neighbors keep asking who did our yard. That's all you need to know.",
-    author: "- Tom, Presidio Heights"
+    author: "- Tom, Palm Beach"
   },
   {
     text: "Been using them for 2 years now. Consistent quality, fair pricing, zero drama. Can't ask for more than that.",
-    author: "- James, Castro"
+    author: "- James, Delray Beach"
   },
   {
-    text: "They made our backyard feel like a sanctuary. We actually use our outdoor space now!",
-    author: "- Amanda, Cole Valley"
+    text: "They made our backyard feel like a sanctuary. We actually use our pool deck now!",
+    author: "- Amanda, Sarasota"
   }
 ];
 
 const steps = [
   {
     title: "You reach out",
-    description: "Send us a message or call. Tell us about your space and what you need.",
+    description: "Send us a message or call. Tell us about your property and what you need.",
   },
   {
     title: "We visit & assess",
-    description: "We come to you, look at your outdoor space, and discuss your vision.",
+    description: "We come to you, walk your property, and check your soil and drainage.",
   },
   {
     title: "We take care of the rest",
-    description: "From design to maintenance, we handle it all. You just enjoy the results.",
+    description: "From design to weekly maintenance, we handle it all. You just enjoy the view.",
   },
 ];
 
@@ -120,16 +121,13 @@ export default function Home() {
 
   const [isBookingOpen, setIsBookingOpen] = useState(false);
 
-  const { scrollY } = useScroll();
-  const heroTextX = useTransform(scrollY, [0, 500], [0, -200]); // Moves left as you scroll down
-  const galleryTextX = useTransform(scrollY, [600, 1100], [200, 0]); // Moves from right to center
-
   return (
-    <main className="w-full relative bg-warm-white">
+    <main className="w-full relative bg-off-white">
       <BookingModal isOpen={isBookingOpen} onClose={() => setIsBookingOpen(false)} service={null} />
       <FloatingCTA onBookClick={() => setIsBookingOpen(true)} />
+      <SideNav />
       {/* Hero Section */}
-      <section className="relative h-screen min-h-[800px] flex flex-col justify-center items-center overflow-hidden select-none">
+      <section id="hero" className="relative h-screen min-h-[800px] flex flex-col justify-center items-center overflow-hidden select-none">
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <div className="relative w-full h-full">
@@ -142,50 +140,89 @@ export default function Home() {
               quality={90}
             />
           </div>
-          <div className="absolute inset-0 bg-black/40" />
+          {/* Animated black overlay - fades from 70% to 30% until effortless animation ends */}
+          <motion.div
+            className="absolute inset-0 bg-black"
+            initial={{ opacity: 0.7 }}
+            animate={{ opacity: 0.3 }}
+            transition={{ duration: 2.7, ease: [0.19, 1, 0.22, 1] }}
+          />
           <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/60" />
         </div>
 
         {/* Content */}
         <div className="relative z-10 text-center text-warm-white px-4 max-w-5xl w-full">
-          {/* Scroll Animated Header */}
-          <motion.div style={{ x: heroTextX }} className="mx-auto">
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-display font-medium tracking-tight mb-8 leading-[1.1]">
+          {/* Main heading with fade-in and scale */}
+          <motion.div
+            className="mx-auto"
+            initial={{ opacity: 0, scale: 0.98 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1.7, delay: 0.3, ease: [0.19, 1, 0.22, 1] }}
+          >
+            <h1 className="text-[3.45rem] md:text-[5.2rem] lg:text-[7rem] font-display font-medium tracking-tight mb-8 leading-[1.1]">
               From not the best <br />
-              to <span className="font-bold">effortless.</span>
+              to <span className="inline-block overflow-hidden relative translate-y-[0.22em] align-baseline pb-1 px-1">
+                <motion.span
+                  className="font-bold inline-block"
+                  initial={{ opacity: 0, letterSpacing: "-0.15em", filter: "blur(3.4px)" }}
+                  animate={{ opacity: 1, letterSpacing: "0.1em", filter: "blur(0px)" }}
+                  transition={{
+                    duration: 2,
+                    delay: 1.2,
+                    ease: [0.19, 1, 0.22, 1]
+                  }}
+                >
+                  effortless.
+                </motion.span>
+              </span>
             </h1>
           </motion.div>
 
-          <Reveal delay={0.4} className="mx-auto">
-            <p className="text-xl md:text-2xl mb-12 max-w-2xl mx-auto font-medium opacity-95 text-balance">
+          {/* Subheading with fade-in and scale */}
+          <motion.div
+            className="mx-auto"
+            initial={{ opacity: 0, scale: 0.98 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1.7, delay: 0.6, ease: [0.19, 1, 0.22, 1] }}
+          >
+            <p className="text-[1.45rem] md:text-[1.75rem] mb-12 max-w-3xl mx-auto font-medium opacity-95 text-balance">
               We design, remove and give life to outdoor spaces that feel
               clean, and cared for.
             </p>
-          </Reveal>
+          </motion.div>
 
-          <Reveal delay={0.6} className="mx-auto">
-            <div className="flex justify-center items-center">
-              <button
-                onClick={() => setIsBookingOpen(true)}
-                className="bg-beige text-forest px-9 py-4 rounded-lg font-bold text-base hover:scale-[1.02] hover:bg-white transition-all duration-300 shadow-lg"
-              >
-                BOOK NOW
-              </button>
-            </div>
-          </Reveal>
+          {/* Button with fade-in and scale */}
+          <motion.div
+            className="mx-auto flex justify-center items-center"
+            initial={{ opacity: 0, scale: 0.98 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1.7, delay: 0.9, ease: [0.19, 1, 0.22, 1] }}
+          >
+            <button
+              onClick={() => {
+                const gallerySection = document.querySelector('section.py-32.bg-off-white');
+                if (gallerySection) {
+                  gallerySection.scrollIntoView({ behavior: 'smooth' });
+                }
+              }}
+              className="bg-[#1a1617] text-white px-[2.6rem] py-[1.15rem] rounded-lg font-bold text-[1.15rem] uppercase tracking-wider hover:scale-[1.05] hover:bg-[#2a2627] hover:shadow-[0_0_20px_rgba(26,22,23,0.5)] transition-all duration-300 shadow-[0_10px_30px_rgba(26,22,23,0.3)] active:scale-95"
+            >
+              TAKE A LOOK
+            </button>
+          </motion.div>
         </div>
       </section >
 
       {/* Gallery Section */}
-      < section className="py-32 bg-beige border-b border-stone/10" >
+      <section id="gallery" className="py-32 bg-off-white border-b border-stone/10" >
         <div className="container mx-auto px-6 md:px-12 max-w-7xl text-center mb-16">
           <Reveal className="mx-auto">
-            <motion.h2 style={{ x: galleryTextX }} className="text-4xl md:text-5xl lg:text-6xl tracking-tight mb-6 font-display">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl tracking-tight mb-6 font-display">
               <span className="font-medium">Same spaces,</span>{' '}
               <span className="italic font-normal text-forest">
                 different feeling.
               </span>
-            </motion.h2>
+            </h2>
             <div className="w-24 h-px bg-stone/20 mx-auto mt-8" />
           </Reveal>
         </div>
@@ -193,11 +230,13 @@ export default function Home() {
       </section >
 
       {/* Services Section */}
-      < section id="services" className="py-32 bg-white relative" >
+      < section id="services" className="py-32 bg-off-white relative" >
         <div className="container mx-auto px-6 md:px-12 max-w-7xl text-center">
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-medium font-display tracking-tight text-forest mb-24 uppercase tracking-widest">
-            Our services
-          </h2>
+          <Reveal className="mx-auto text-center" width="100%">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-medium font-display tracking-tight text-forest mb-24 uppercase tracking-widest text-center">
+              Our services
+            </h2>
+          </Reveal>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {services.map((service, index) => (
@@ -233,7 +272,7 @@ export default function Home() {
       </section >
 
       {/* Testimonials Section */}
-      < section className="py-32 bg-beige overflow-hidden" >
+      <section id="testimonials" className="py-32 bg-light-grey overflow-hidden" >
         <div className="container mx-auto px-6 md:px-12 max-w-7xl">
           <Reveal className="mx-auto mb-24">
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-medium font-display text-center text-forest">
@@ -272,7 +311,7 @@ export default function Home() {
       </section >
 
       {/* FAQ Section */}
-      < section className="py-32 bg-warm-white" >
+      < section className="py-32 bg-off-white" >
         <div className="container mx-auto px-6 md:px-12 max-w-7xl">
           <h2 className="text-4xl md:text-5xl font-display text-center text-forest mb-24">Everything you need to know.</h2>
           <FAQ />
@@ -280,13 +319,13 @@ export default function Home() {
       </section >
 
       {/* Footer */}
-      < footer className="py-24 bg-beige border-t border-stone/10 text-center" >
+      < footer className="py-24 bg-black border-t border-white/10 text-center" >
         <div className="container mx-auto px-6 md:px-12 max-w-7xl">
           <div className="text-center">
-            <h2 className="text-3xl font-display font-medium tracking-[0.2em] text-forest mb-2 inline-block">
+            <h2 className="text-3xl font-display font-medium tracking-[0.2em] text-warm-white mb-2 inline-block">
               SCAPERS
             </h2>
-            <p className="text-base mb-8 font-sans text-forest/60">Landscaping & Outdoor Care</p>
+            <p className="text-base mb-8 font-sans text-warm-white/60">Landscaping & Outdoor Care</p>
 
             {/* Social Media Icons */}
             <div className="flex justify-center gap-6 mb-8">
@@ -307,7 +346,7 @@ export default function Home() {
             <div className="flex flex-col md:flex-row items-center gap-2 md:gap-6 ml-auto">
               <span className="flex items-center gap-2 px-3 py-1 rounded-full bg-stone/10 border border-stone/20">
                 <span className="w-2 h-2 rounded-full bg-sage animate-pulse"></span>
-                Current mood: Foggy mornings, busy planting.
+                Current mood: Sunny skies, busy planting.
               </span>
             </div>
           </div>

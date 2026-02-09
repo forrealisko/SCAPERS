@@ -17,7 +17,7 @@ const fraunces = Fraunces({
 });
 
 export const metadata: Metadata = {
-  title: "SCAPERS | Industrial Modern Landscaping",
+  title: "SCAPERS | SF LANDSCAPING",
   description: "From not the best to effortless.",
 };
 
@@ -32,8 +32,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${outfit.variable} ${fraunces.variable} antialiased font-sans`}>
+    <html lang="en" suppressHydrationWarning>
+      <body className={`${outfit.variable} ${fraunces.variable} antialiased font-sans`} suppressHydrationWarning>
         <OrganicCursor />
         <SmoothScroll>
           {children}

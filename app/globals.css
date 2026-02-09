@@ -2,14 +2,18 @@
 
 @theme {
   /* Colors */
-  --color-background: #FFFEF5;
+  --color-background: #F8F8F6;
   --color-foreground: #2A2A2A;
   --color-forest: #283618;
   --color-sage: #E9EDC9;
   --color-meadow: #CCD5AE;
-  --color-beige: #FEFAE0;
+  --color-off-white: #F8F8F6;
+  --color-light-grey: #E8E8E5;
+  --color-black: #0A0A0A;
+  --color-white: #FFFFFF;
   --color-stone: #9B9891;
   --color-warm-white: #FFFEF5;
+  --color-terracotta: #C04000;
 
   /* Typography */
   --font-display: var(--font-fraunces), serif;

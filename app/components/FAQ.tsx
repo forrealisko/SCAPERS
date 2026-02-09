@@ -6,23 +6,23 @@ import { Plus, Minus } from "lucide-react";
 const faqData = [
     {
         question: "How long does a typical project take?",
-        answer: "Smaller updates (planting, cleanup) take 1-2 weeks. Full redesigns and hardscaping typically range from 3-6 weeks depending on complexity."
+        answer: "Smaller updates (sod, planting) take 1-2 weeks. Full redesigns and hardscaping typically range from 3-6 weeks depending on HOA approvals and weather."
     },
     {
         question: "Do you handle maintenance after the build?",
-        answer: "Yes. In fact, 80% of our build clients stick with us for ongoing seasonal care. We know exactly what your garden needs because we built it."
+        answer: "Yes. In fact, 80% of our build clients stick with us for ongoing seasonal care. Florida landscapes grow fast; we keep them looking brand new."
     },
     {
-        question: "What areas of San Francisco do you serve?",
-        answer: "We primarily work in Noe Valley, Pacific Heights, the Mission, and the Sunset/Richmond districts, but we're happy to discuss projects anywhere in the city."
+        question: "What areas do you serve?",
+        answer: "We primarily work in Boca Raton, Delray Beach, Fort Lauderdale, and the Palm Beaches, but we're happy to discuss projects anywhere in South Florida."
     },
     {
         question: "How does pricing work?",
-        answer: "We start with a consultation. For maintenance, we offer flat monthly rates. For design/builds, we provide a detailed itemized quote so you know exactly where your budget goes."
+        answer: "We value transparency. Maintenance is a flat monthly rate. For design/builds, we provide a detailed itemized quote—labor and materials are clearly separated."
     },
     {
         question: "Is your gardening practice organic?",
-        answer: "100%. We don't use harsh chemicals. We prioritize native plants, pollinator-friendly flowers, and sustainable soil health."
+        answer: "We offer full organic options. We prioritize Florida-Friendly Landscaping™ principles to protect our waterways and local wildlife."
     }
 ];
 
