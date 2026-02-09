@@ -83,25 +83,25 @@ export default function Gallery() {
                         </div>
 
                         {/* Aesthetic Gallery of Thumbnails with Lightbox */}
-                        <div className="flex -space-x-4 md:-space-x-6 hover:space-x-2 transition-all duration-500 ease-signature group py-4">
+                        <div className="flex flex-wrap justify-center gap-4 md:gap-0 md:-space-x-6 hover:space-x-2 transition-all duration-500 ease-signature group py-4">
                             {[1, 2, 3, 4, 5].map((num, idx) => (
                                 <motion.div
                                     key={num}
                                     onClick={() => openLightbox(idx)}
-                                    className="relative w-[72px] h-[72px] md:w-[108px] md:h-[108px] rounded-2xl overflow-hidden border-4 border-white shadow-xl transform transition-all duration-500 group-hover:scale-105 group-hover:-translate-y-2 cursor-pointer"
+                                    className="relative w-[72px] h-[72px] md:w-[108px] md:h-[108px] rounded-2xl overflow-hidden border-4 border-white shadow-xl transform transition-all duration-500 hover:scale-105 hover:-translate-y-2 cursor-pointer"
                                     style={{ zIndex: 10 - num }}
                                 >
                                     <Image
                                         src={`/images/ph${num}.jpg`}
                                         alt={`Customer project ${num}`}
                                         fill
-                                        className="object-cover hover:scale-110 transition-transform duration-500"
+                                        className="object-cover"
                                     />
                                 </motion.div>
                             ))}
                         </div>
 
-                        <div className="flex gap-8 text-forest/80">
+                        <div className="flex flex-col md:flex-row gap-8 text-forest/80 items-center justify-center">
                             <div className="flex flex-col items-center gap-2">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" /></svg>
                                 <span className="text-xs font-medium uppercase tracking-wider text-stone-grey">5-Star Rated</span>

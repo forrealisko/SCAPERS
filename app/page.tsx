@@ -159,9 +159,9 @@ export default function Home() {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1.7, delay: 0.3, ease: [0.19, 1, 0.22, 1] }}
           >
-            <h1 className="text-[3.45rem] md:text-[5.2rem] lg:text-[7rem] font-display font-medium tracking-tight mb-8 leading-[1.1]">
-              From not the best <br />
-              to <span className="inline-block overflow-hidden relative translate-y-[0.22em] align-baseline pb-1 px-1">
+            <h1 className="text-[2.5rem] md:text-[5.2rem] lg:text-[7rem] font-display font-medium tracking-tight mb-6 md:mb-8 leading-[1.1] md:leading-[1.1]">
+              From not the best <br className="hidden md:block" />
+              to <span className="inline-block overflow-hidden relative translate-y-[0.2em] md:translate-y-[0.22em] align-baseline pb-1 px-1">
                 <motion.span
                   className="font-bold inline-block"
                   initial={{ opacity: 0, letterSpacing: "-0.15em", filter: "blur(3.4px)" }}
@@ -185,7 +185,7 @@ export default function Home() {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1.7, delay: 0.6, ease: [0.19, 1, 0.22, 1] }}
           >
-            <p className="text-[1.45rem] md:text-[1.75rem] mb-12 max-w-3xl mx-auto font-medium opacity-95 text-balance">
+            <p className="text-[1.1rem] md:text-[1.75rem] mb-8 md:mb-12 max-w-3xl mx-auto font-medium opacity-95 text-balance leading-relaxed">
               We design, remove and give life to outdoor spaces that feel
               clean, and cared for.
             </p>
@@ -205,7 +205,7 @@ export default function Home() {
                   gallerySection.scrollIntoView({ behavior: 'smooth' });
                 }
               }}
-              className="bg-[#1a1617] text-white px-[2.6rem] py-[1.15rem] rounded-lg font-bold text-[1.15rem] uppercase tracking-wider hover:scale-[1.05] hover:bg-[#2a2627] hover:shadow-[0_0_20px_rgba(26,22,23,0.5)] transition-all duration-300 shadow-[0_10px_30px_rgba(26,22,23,0.3)] active:scale-95"
+              className="bg-[#1a1617] text-white px-8 py-4 md:px-[2.6rem] md:py-[1.15rem] rounded-lg font-bold text-base md:text-[1.15rem] uppercase tracking-wider hover:scale-[1.05] hover:bg-[#2a2627] hover:shadow-[0_0_20px_rgba(26,22,23,0.5)] transition-all duration-300 shadow-[0_10px_30px_rgba(26,22,23,0.3)] active:scale-95"
             >
               TAKE A LOOK
             </button>
@@ -214,7 +214,7 @@ export default function Home() {
       </section >
 
       {/* Gallery Section */}
-      <section id="gallery" className="py-32 bg-off-white border-b border-stone/10" >
+      <section id="gallery" className="py-20 md:py-32 bg-off-white border-b border-stone/10" >
         <div className="container mx-auto px-6 md:px-12 max-w-7xl text-center mb-16">
           <Reveal className="mx-auto">
             <h2 className="text-4xl md:text-5xl lg:text-6xl tracking-tight mb-6 font-display">
@@ -230,7 +230,7 @@ export default function Home() {
       </section >
 
       {/* Services Section */}
-      < section id="services" className="py-32 bg-off-white relative" >
+      <section id="services" className="py-20 md:py-32 bg-off-white relative" >
         <div className="container mx-auto px-6 md:px-12 max-w-7xl text-center">
           <Reveal className="mx-auto text-center" width="100%">
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-medium font-display tracking-tight text-forest mb-24 uppercase tracking-widest text-center">
@@ -238,7 +238,7 @@ export default function Home() {
             </h2>
           </Reveal>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             {services.map((service, index) => (
               <ServiceCard
                 key={index}
@@ -254,7 +254,7 @@ export default function Home() {
       </section >
 
       {/* Process Section */}
-      < section className="py-32 bg-forest text-warm-white" >
+      < section className="py-20 md:py-32 bg-forest text-warm-white" >
         <div className="container mx-auto px-6 md:px-12 max-w-7xl text-center">
           <h2 className="text-3xl md:text-5xl lg:text-6xl font-medium font-display mb-24">
             No hassle. Just results.
@@ -272,7 +272,7 @@ export default function Home() {
       </section >
 
       {/* Testimonials Section */}
-      <section id="testimonials" className="py-32 bg-light-grey overflow-hidden" >
+      <section id="testimonials" className="py-20 md:py-32 bg-light-grey overflow-hidden" >
         <div className="container mx-auto px-6 md:px-12 max-w-7xl">
           <Reveal className="mx-auto mb-24">
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-medium font-display text-center text-forest">
@@ -294,7 +294,7 @@ export default function Home() {
       </section >
 
       {/* Contact Section */}
-      < section id="contact" className="py-32 bg-forest text-warm-white" >
+      < section id="contact" className="py-20 md:py-32 bg-forest text-warm-white" >
         <div className="container mx-auto px-6 md:px-12 max-w-2xl text-center">
           <h2 className="text-4xl md:text-5xl font-medium font-display mb-8">Tell us about your space.</h2>
           <p className="text-xl mb-12 opacity-80">Send us a message and we'll take it from there.</p>
@@ -311,7 +311,7 @@ export default function Home() {
       </section >
 
       {/* FAQ Section */}
-      < section className="py-32 bg-off-white" >
+      < section className="py-20 md:py-32 bg-off-white" >
         <div className="container mx-auto px-6 md:px-12 max-w-7xl">
           <h2 className="text-4xl md:text-5xl font-display text-center text-forest mb-24">Everything you need to know.</h2>
           <FAQ />
