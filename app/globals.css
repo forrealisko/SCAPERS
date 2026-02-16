@@ -1,0 +1,88 @@
+@import "tailwindcss";
+
+@theme {
+  /* Colors */
+  --color-background: #F8F8F6;
+  --color-foreground: #2A2A2A;
+  --color-forest: #283618;
+  --color-sage: #E9EDC9;
+  --color-meadow: #CCD5AE;
+  --color-off-white: #F8F8F6;
+  --color-light-grey: #E8E8E5;
+  --color-black: #0A0A0A;
+  --color-white: #FFFFFF;
+  --color-stone: #9B9891;
+  --color-warm-white: #FFFEF5;
+  --color-terracotta: #C04000;
+
+  /* Typography */
+  --font-display: var(--font-fraunces), serif;
+  --font-sans: var(--font-outfit), sans-serif;
+
+  /* Animations */
+  --ease-signature: cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+/* Hide default cursor universally */
+* {
+  cursor: none !important;
+}
+
+/* Global Styles */
+body {
+  background: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Grain texture overlay — JetBrains-style paper feel */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.045;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
+}
+
+/* Utility for display headers */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-display);
+}
+
+/* Animated divider line */
+@keyframes draw-line {
+  from {
+    transform: scaleX(0);
+  }
+
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.divider-animate {
+  transform-origin: center;
+  animation: draw-line 0.8s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+}
+
+/* Service card back-side glow */
+.service-card-back-glow {
+  transition: box-shadow 0.4s cubic-bezier(0.19, 1, 0.22, 1),
+    border-color 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.service-card-back-glow:hover {
+  border-color: rgba(205, 213, 174, 0.6);
+  box-shadow: 0 0 40px rgba(205, 213, 174, 0.15), 0 0 80px rgba(205, 213, 174, 0.05), 0 12px 40px rgba(0, 0, 0, 0.25);
+}
