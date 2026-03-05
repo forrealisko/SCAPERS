@@ -72,8 +72,8 @@ export default function SideNav() {
                                 }}
                                 transition={{ duration: 0.3, ease: [0.19, 1, 0.22, 1] }}
                                 className={`text-[11px] font-bold uppercase tracking-[0.25em] whitespace-nowrap pointer-events-none select-none ${isActive
-                                        ? 'text-forest'
-                                        : 'text-stone-grey group-hover/item:text-forest'
+                                    ? 'text-deep-blue'
+                                    : 'text-stone-grey group-hover/item:text-deep-blue'
                                     }`}
                             >
                                 {item.label}
@@ -84,7 +84,7 @@ export default function SideNav() {
                                 <motion.div
                                     animate={{
                                         scale: isActive ? 1 : 0.7,
-                                        backgroundColor: isActive ? '#1A4D2E' : '#9B9891',
+                                        backgroundColor: isActive ? '#0E1C13' : '#6B6168',
                                     }}
                                     whileHover={{ scale: 1.1 }}
                                     transition={{ duration: 0.2 }}
@@ -95,7 +95,7 @@ export default function SideNav() {
                                 {isActive && (
                                     <motion.div
                                         layoutId="activeIndicator"
-                                        className="absolute w-4 h-4 border border-forest/40 rounded-full"
+                                        className="absolute w-4 h-4 border border-deep-green/40 rounded-full"
                                         transition={{
                                             type: "spring",
                                             stiffness: 380,

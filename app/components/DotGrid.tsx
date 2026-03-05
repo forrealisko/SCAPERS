@@ -14,6 +14,9 @@ export default function DotGrid() {
 
         let mouseX = -1000;
         let mouseY = -1000;
+        let targetX = -1000;
+        let targetY = -1000;
+        let isOverInteractive = false;
         let animFrame: number;
 
         const resize = () => {
@@ -21,14 +24,19 @@ export default function DotGrid() {
             canvas.height = window.innerHeight;
         };
 
-        const GRID_SIZE = 40;
-        const DOT_RADIUS = 0.8;
-        const LINE_ALPHA = 0.04;
-        const DOT_BASE_ALPHA = 0.08;
-        const SPOTLIGHT_RADIUS = 280;
+        const GRID_SIZE = 48; // Slightly larger for cleaner look
+        const DOT_RADIUS = 0.6;
+        const LINE_ALPHA = 0.005; // Almost invisible
+        const DOT_BASE_ALPHA = 0.01; // Almost invisible
+        const SPOTLIGHT_RADIUS = 200; // Even smaller spread
+        const LERP_FACTOR = 0.08; // For smooth "dynamic" follow
 
         const draw = () => {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Smooth mouse follow
+            mouseX += (targetX - mouseX) * LERP_FACTOR;
+            mouseY += (targetY - mouseY) * LERP_FACTOR;
 
             // Draw grid lines
             ctx.strokeStyle = `rgba(155, 152, 145, ${LINE_ALPHA})`;
@@ -57,21 +65,21 @@ export default function DotGrid() {
                     const dy = y - mouseY;
                     const dist = Math.sqrt(dx * dx + dy * dy);
 
-                    // Spotlight proximity boost
-                    const proximity = Math.max(0, 1 - dist / SPOTLIGHT_RADIUS);
-                    const alpha = DOT_BASE_ALPHA + proximity * 0.35;
-                    const radius = DOT_RADIUS + proximity * 2.2;
+                    // Spotlight proximity boost - suppressed if over interactive
+                    const proximity = isOverInteractive ? 0 : Math.max(0, 1 - dist / SPOTLIGHT_RADIUS);
+                    const alpha = DOT_BASE_ALPHA + proximity * 0.03; // Extremely subtle boost
+                    const radius = DOT_RADIUS + proximity * 1.5;
 
                     ctx.beginPath();
                     ctx.arc(x, y, radius, 0, Math.PI * 2);
-                    ctx.fillStyle = `rgba(40, 54, 24, ${alpha})`;
+                    ctx.fillStyle = `rgba(27, 46, 67, ${alpha})`;
                     ctx.fill();
 
                     // Spotlight glow ring on close dots
                     if (proximity > 0.4) {
                         ctx.beginPath();
                         ctx.arc(x, y, radius + 4, 0, Math.PI * 2);
-                        ctx.strokeStyle = `rgba(205, 213, 174, ${proximity * 0.15})`;
+                        ctx.strokeStyle = `rgba(112, 140, 203, ${proximity * 0.01})`; // Super subtle ring
                         ctx.lineWidth = 0.5;
                         ctx.stroke();
                     }
@@ -79,10 +87,10 @@ export default function DotGrid() {
             }
 
             // Soft radial glow at mouse position
-            if (mouseX > 0 && mouseY > 0) {
+            if (mouseX > 0 && mouseY > 0 && !isOverInteractive) {
                 const gradient = ctx.createRadialGradient(mouseX, mouseY, 0, mouseX, mouseY, SPOTLIGHT_RADIUS);
-                gradient.addColorStop(0, "rgba(205, 213, 174, 0.04)");
-                gradient.addColorStop(0.5, "rgba(205, 213, 174, 0.015)");
+                gradient.addColorStop(0, "rgba(112, 140, 203, 0.02)");
+                gradient.addColorStop(0.5, "rgba(112, 140, 203, 0.005)");
                 gradient.addColorStop(1, "rgba(205, 213, 174, 0)");
                 ctx.fillStyle = gradient;
                 ctx.fillRect(mouseX - SPOTLIGHT_RADIUS, mouseY - SPOTLIGHT_RADIUS, SPOTLIGHT_RADIUS * 2, SPOTLIGHT_RADIUS * 2);
@@ -92,13 +100,17 @@ export default function DotGrid() {
         };
 
         const handleMouseMove = (e: MouseEvent) => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
+            targetX = e.clientX;
+            targetY = e.clientY;
+
+            // Check if hovering over interactive elements
+            const target = e.target as HTMLElement;
+            isOverInteractive = !!target?.closest('button, a, input, [role="button"]');
         };
 
         const handleMouseLeave = () => {
-            mouseX = -1000;
-            mouseY = -1000;
+            targetX = -1000;
+            targetY = -1000;
         };
 
         resize();

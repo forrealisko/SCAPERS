@@ -10,7 +10,23 @@ import Marquee from "react-fast-marquee";
 import { Scissors, Leaf, Flower2, Sparkles, Hammer, Instagram, Facebook, Linkedin } from "lucide-react";
 import BookingModal from "./components/BookingModal";
 import FloatingCTA from "./components/FloatingCTA";
-import SideNav from "./components/SideNav";
+import SVGDivider from "./components/SVGDivider";
+// Animated divider component
+function AnimatedDivider() {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-50px" });
+  return (
+    <motion.div
+      ref={ref}
+      className="h-px bg-stone/20 mx-auto mt-8"
+      initial={{ width: 0 }}
+      animate={isInView ? { width: 96 } : { width: 0 }}
+      transition={{ duration: 0.8, ease: [0.19, 1, 0.22, 1], delay: 0.3 }}
+    />
+  );
+}
+import DotGrid from "./components/DotGrid";
+
 
 const services = [
   {
@@ -113,20 +129,6 @@ const steps = [
 
 import FAQ from "./components/FAQ";
 
-// Animated divider component
-function AnimatedDivider() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-50px" });
-  return (
-    <motion.div
-      ref={ref}
-      className="h-px bg-stone/20 mx-auto mt-8"
-      initial={{ width: 0 }}
-      animate={isInView ? { width: 96 } : { width: 0 }}
-      transition={{ duration: 0.8, ease: [0.19, 1, 0.22, 1], delay: 0.3 }}
-    />
-  );
-}
 
 export default function Home() {
   // Scroll Fix
@@ -140,14 +142,14 @@ export default function Home() {
     <main className="w-full relative bg-off-white">
       <BookingModal isOpen={isBookingOpen} onClose={() => setIsBookingOpen(false)} service={null} />
       <FloatingCTA onBookClick={() => setIsBookingOpen(true)} />
-      <SideNav />
+      <DotGrid />
       {/* Hero Section */}
       <section id="hero" className="relative h-screen min-h-[800px] flex flex-col justify-center items-center overflow-hidden select-none">
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <div className="relative w-full h-full">
             <Image
-              src="/images/hero.jpg"
+              src="/images/heronovy.webp"
               alt="Peaceful garden ecosystem"
               fill
               className="object-cover"
@@ -155,14 +157,23 @@ export default function Home() {
               quality={90}
             />
           </div>
-          {/* Animated black overlay - fades from 70% to 30% until effortless animation ends */}
+          {/* Animated vignette overlay to match ITALIA style */}
           <motion.div
-            className="absolute inset-0 bg-black"
-            initial={{ opacity: 0.7 }}
-            animate={{ opacity: 0.3 }}
+            className="absolute inset-0"
+            style={{
+              background: `
+                radial-gradient(ellipse 80% 55% at 50% 52%, rgba(14, 28, 19, 0.55) 0%, transparent 100%),
+                linear-gradient(to bottom,
+                  rgba(14, 28, 19, 0.4) 0%,
+                  rgba(14, 28, 19, 0.2) 40%,
+                  rgba(14, 28, 19, 0.2) 60%,
+                  rgba(14, 28, 19, 0.75) 100%)
+              `
+            }}
+            initial={{ opacity: 0.9 }}
+            animate={{ opacity: 0.7 }}
             transition={{ duration: 2.7, ease: [0.19, 1, 0.22, 1] }}
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/60" />
         </div>
 
         {/* Content */}
@@ -174,22 +185,12 @@ export default function Home() {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1.7, delay: 0.3, ease: [0.19, 1, 0.22, 1] }}
           >
-            <h1 className="text-[2.5rem] md:text-[5.2rem] lg:text-[7rem] font-display font-medium tracking-tight mb-6 md:mb-8 leading-[1.1] md:leading-[1.1]">
-              From not the best <br className="hidden md:block" />
-              to <span className="inline-block overflow-hidden relative translate-y-[0.2em] md:translate-y-[0.22em] align-baseline pb-1 px-1">
-                <motion.span
-                  className="font-bold inline-block"
-                  initial={{ opacity: 0, letterSpacing: "-0.15em", filter: "blur(3.4px)" }}
-                  animate={{ opacity: 1, letterSpacing: "0.1em", filter: "blur(0px)" }}
-                  transition={{
-                    duration: 2,
-                    delay: 1.2,
-                    ease: [0.19, 1, 0.22, 1]
-                  }}
-                >
-                  effortless.
-                </motion.span>
-              </span>
+            <h1
+              className="text-[2.5rem] md:text-[5.2rem] lg:text-[7rem] font-display font-normal tracking-[0.02em] mb-6 md:mb-8 leading-[1.1] md:leading-[1.1]"
+              style={{ textShadow: "0 1px 4px rgba(0, 0, 0, 0.5), 0 3px 14px rgba(0, 0, 0, 0.3)" }}
+            >
+              From overgrown <br className="hidden md:block" />
+              to extraordinary.
             </h1>
           </motion.div>
 
@@ -200,7 +201,10 @@ export default function Home() {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1.7, delay: 0.6, ease: [0.19, 1, 0.22, 1] }}
           >
-            <p className="text-[1.1rem] md:text-[1.75rem] mb-8 md:mb-12 max-w-3xl mx-auto font-medium opacity-95 text-balance leading-relaxed">
+            <p
+              className="text-[1.1rem] md:text-[1.75rem] mb-8 md:mb-12 max-w-3xl mx-auto font-normal opacity-95 text-balance leading-relaxed"
+              style={{ textShadow: "0 2px 4px rgba(0, 0, 0, 0.8), 0 4px 12px rgba(0, 0, 0, 0.6), 0 0 20px rgba(0, 0, 0, 0.4)" }}
+            >
               We design, remove and give life to outdoor spaces that feel
               clean, and cared for.
             </p>
@@ -215,12 +219,12 @@ export default function Home() {
           >
             <button
               onClick={() => {
-                const gallerySection = document.querySelector('section.py-32.bg-off-white');
+                const gallerySection = document.getElementById('gallery');
                 if (gallerySection) {
                   gallerySection.scrollIntoView({ behavior: 'smooth' });
                 }
               }}
-              className="bg-[#1a1617] text-white px-8 py-4 md:px-[2.6rem] md:py-[1.15rem] rounded-lg font-bold text-base md:text-[1.15rem] uppercase tracking-wider hover:scale-[1.05] hover:bg-[#2a2627] hover:shadow-[0_0_20px_rgba(26,22,23,0.5)] transition-all duration-300 shadow-[0_10px_30px_rgba(26,22,23,0.3)] active:scale-95"
+              className="bg-gold text-[#0E1C13] px-9 py-4 rounded-full font-semibold text-sm md:text-sm uppercase tracking-[0.15em] hover:scale-[1.02] hover:opacity-90 transition-all duration-300 shadow-sm active:scale-95"
             >
               TAKE A LOOK
             </button>
@@ -228,12 +232,15 @@ export default function Home() {
         </div>
       </section >
 
+      {/* Divider: Hero (bg-#0E1C13) → Gallery (bg-[#F8F9F5]) */}
+      <SVGDivider color="#F8F9F5" />
+
       {/* Gallery Section */}
-      <section id="gallery" className="py-20 md:py-32 bg-off-white border-b border-stone/10" >
+      <section id="gallery" className="pt-12 md:pt-16 pb-20 md:pb-32 bg-off-white" >
         <div className="container mx-auto px-6 md:px-12 max-w-7xl text-center mb-16">
           <Reveal className="mx-auto">
             <h2 className="text-4xl md:text-5xl lg:text-6xl tracking-tight mb-6 font-display">
-              <span className="font-medium">Same spaces,</span>{' '}
+              <span className="font-medium text-[#0E1C13]">Same spaces,</span>{' '}
               <span className="italic font-normal text-forest">
                 different feeling.
               </span>
@@ -245,10 +252,10 @@ export default function Home() {
       </section >
 
       {/* Services Section */}
-      <section id="services" className="py-20 md:py-32 bg-off-white relative" >
+      <section id="services" className="pt-10 md:pt-16 pb-20 md:pb-32 bg-off-white relative" >
         <div className="container mx-auto px-6 md:px-12 max-w-7xl text-center">
           <Reveal className="mx-auto text-center" width="100%">
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-medium font-display tracking-tight text-forest mb-24 uppercase tracking-widest text-center">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-medium font-display tracking-tight text-deep-green mb-24 uppercase tracking-widest text-center">
               Our services
             </h2>
           </Reveal>
@@ -268,8 +275,11 @@ export default function Home() {
         </div>
       </section >
 
+      {/* Divider: Services (bg-[#F8F9F5] off-white) → Process (bg-[#0E1C13] deep-green) */}
+      <SVGDivider color="#0E1C13" />
+
       {/* Process Section */}
-      < section className="py-20 md:py-32 bg-forest text-warm-white" >
+      < section className="py-20 md:py-32 bg-deep-green text-white" >
         <div className="container mx-auto px-6 md:px-12 max-w-7xl text-center">
           <h2 className="text-3xl md:text-5xl lg:text-6xl font-medium font-display mb-24">
             No hassle. Just results.
@@ -277,7 +287,7 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-16 max-w-5xl mx-auto">
             {steps.map((step, index) => (
               <div key={index}>
-                <div className="text-6xl font-display opacity-40 mb-8">{index + 1}</div>
+                <div className="text-6xl font-display text-meadow/40 mb-8">{index + 1}</div>
                 <h3 className="text-2xl mb-4 font-bold">{step.title}</h3>
                 <p className="opacity-70 leading-relaxed text-balance">{step.description}</p>
               </div>
@@ -286,11 +296,14 @@ export default function Home() {
         </div>
       </section >
 
+      {/* Divider: Process (bg-[#0E1C13] deep-green) → Testimonials (bg-[#EEF2EB] light-grey) */}
+      <SVGDivider color="#EEF2EB" flip />
+
       {/* Testimonials Section */}
       <section id="testimonials" className="py-20 md:py-32 bg-light-grey overflow-hidden" >
         <div className="container mx-auto px-6 md:px-12 max-w-7xl">
           <Reveal className="mx-auto mb-24">
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-medium font-display text-center text-forest">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-medium font-display text-center text-deep-green">
               What people say
             </h2>
           </Reveal>
@@ -299,17 +312,20 @@ export default function Home() {
         <Reveal delay={0.2} width="100%">
           <Marquee gradient={false} speed={40} autoFill pauseOnHover>
             {testimonials.map((t, i) => (
-              <div key={i} className="bg-white p-8 rounded-xl border border-stone/20 w-[350px] md:w-[400px] shadow-sm mx-4 h-full hover:scale-[1.02] hover:-translate-y-1 hover:shadow-lg hover:border-forest/20 transition-all duration-300" style={{ transitionTimingFunction: 'cubic-bezier(0.19, 1, 0.22, 1)' }}>
-                <p className="text-lg leading-relaxed mb-6">"{t.text}"</p>
-                <p className="text-stone font-bold uppercase tracking-widest text-xs">{t.author}</p>
+              <div key={i} className="bg-white/80 backdrop-blur-sm p-8 rounded-xl border border-[#0E1C13]/10 w-[350px] md:w-[400px] shadow-sm mx-4 h-full hover:scale-[1.02] hover:-translate-y-1 hover:shadow-lg hover:border-gold/30 transition-all duration-300" style={{ transitionTimingFunction: 'cubic-bezier(0.19, 1, 0.22, 1)' }}>
+                <p className="text-lg leading-relaxed mb-6 text-[#0E1C13]">"{t.text}"</p>
+                <p className="text-forest font-bold uppercase tracking-widest text-xs">{t.author}</p>
               </div>
             ))}
           </Marquee>
         </Reveal>
       </section >
 
+      {/* Divider: Testimonials (bg-[#EEF2EB] light-grey) → Contact (bg-[#0E1C13] deep-green) */}
+      <SVGDivider color="#0E1C13" />
+
       {/* Contact Section */}
-      < section id="contact" className="py-20 md:py-32 bg-forest text-warm-white" >
+      < section id="contact" className="py-20 md:py-32 bg-deep-green text-white" >
         <div className="container mx-auto px-6 md:px-12 max-w-2xl text-center">
           <h2 className="text-4xl md:text-5xl font-medium font-display mb-8">Tell us about your space.</h2>
           <p className="text-xl mb-12 opacity-80">Talk to our AI assistant or send us a message.</p>
@@ -321,7 +337,7 @@ export default function Home() {
                 window.RetellWidget.open();
               }
             }}
-            className="w-full py-4 bg-sage text-forest font-bold rounded-lg hover:bg-meadow transition-colors duration-300 mb-8 flex items-center justify-center gap-3"
+            className="w-full py-4 bg-gold text-[#0E1C13] font-semibold text-sm uppercase tracking-widest rounded-full hover:opacity-90 transition-all duration-300 mb-8 flex items-center justify-center gap-3"
           >
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" /></svg>
             Talk to Our AI — Book Instantly
@@ -330,59 +346,65 @@ export default function Home() {
           {/* Divider */}
           <div className="flex items-center gap-4 mb-8">
             <div className="flex-1 h-px bg-white/20" />
-            <span className="text-sm uppercase tracking-widest text-warm-white/40 font-medium">or send a message</span>
+            <span className="text-sm uppercase tracking-widest text-white/40 font-medium">or send a message</span>
             <div className="flex-1 h-px bg-white/20" />
           </div>
 
           <form className="space-y-4 text-left">
-            <input type="text" placeholder="Name" className="w-full p-4 rounded-lg bg-white/10 border border-white/20 focus:outline-none focus:border-white/50" />
-            <input type="email" placeholder="Email" className="w-full p-4 rounded-lg bg-white/10 border border-white/20 focus:outline-none focus:border-white/50" />
-            <textarea rows={4} placeholder="Your message" className="w-full p-4 rounded-lg bg-white/10 border border-white/20 focus:outline-none focus:border-white/50"></textarea>
-            <button className="w-full py-4 bg-white text-forest font-bold rounded-lg hover:bg-beige transition-colors duration-300">
+            <input type="text" placeholder="Name" className="w-full p-4 rounded-lg bg-white/10 border border-white/20 focus:outline-none focus:border-gold/50 text-white" />
+            <input type="email" placeholder="Email" className="w-full p-4 rounded-lg bg-white/10 border border-white/20 focus:outline-none focus:border-gold/50 text-white" />
+            <textarea rows={4} placeholder="Your message" className="w-full p-4 rounded-lg bg-white/10 border border-white/20 focus:outline-none focus:border-gold/50 text-white"></textarea>
+            <button className="w-full py-4 bg-gold text-[#0E1C13] font-semibold text-sm uppercase tracking-widest rounded-full hover:opacity-90 transition-all duration-300">
               Send Message
             </button>
           </form>
         </div>
       </section >
 
+      {/* Divider: Contact (bg-[#0E1C13] deep-green) → FAQ (bg-[#F8F9F5] off-white) */}
+      <SVGDivider color="#F8F9F5" flip />
+
       {/* FAQ Section */}
       < section className="py-20 md:py-32 bg-off-white" >
         <div className="container mx-auto px-6 md:px-12 max-w-7xl">
           <Reveal className="mx-auto">
-            <h2 className="text-4xl md:text-5xl font-display text-center text-forest mb-24">Everything you need to know.</h2>
+            <h2 className="text-4xl md:text-5xl font-display text-center text-deep-green mb-24">Everything you need to know.</h2>
           </Reveal>
           <FAQ />
         </div>
       </section >
 
+      {/* Divider: FAQ (bg-[#F8F9F5] off-white) → Footer (bg-[#0E1C13] deep-green) */}
+      <SVGDivider color="#0E1C13" />
+
       {/* Footer */}
-      < footer className="py-24 bg-black border-t border-white/10 text-center" >
+      < footer className="py-24 bg-[#0E1C13] text-center" >
         <div className="container mx-auto px-6 md:px-12 max-w-7xl">
           <div className="text-center">
-            <h2 className="text-3xl font-display font-medium tracking-[0.2em] text-warm-white mb-2 inline-block">
+            <h2 className="text-3xl font-display font-medium tracking-[0.2em] text-white mb-2 inline-block">
               SCAPERS
             </h2>
-            <p className="text-base mb-8 font-sans text-warm-white/60">Landscaping & Outdoor Care</p>
+            <p className="text-base mb-8 font-sans text-white/50">Landscaping & Outdoor Care</p>
 
             {/* Social Media Icons */}
             <div className="flex justify-center gap-6 mb-8">
-              <a href="#" className="text-stone hover:text-forest transition-colors" aria-label="Instagram">
+              <a href="#" className="text-white/40 hover:text-gold transition-colors" aria-label="Instagram">
                 <Instagram className="w-6 h-6" />
               </a>
-              <a href="#" className="text-stone hover:text-forest transition-colors" aria-label="Facebook">
+              <a href="#" className="text-white/40 hover:text-gold transition-colors" aria-label="Facebook">
                 <Facebook className="w-6 h-6" />
               </a>
-              <a href="#" className="text-stone hover:text-forest transition-colors" aria-label="LinkedIn">
+              <a href="#" className="text-white/40 hover:text-gold transition-colors" aria-label="LinkedIn">
                 <Linkedin className="w-6 h-6" />
               </a>
             </div>
           </div>
 
-          <div className="border-t border-stone/20 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-stone-grey">
+          <div className="border-t border-white/10 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-white/40">
             <p>© 2026 SCAPERS.</p>
             <div className="flex flex-col md:flex-row items-center gap-2 md:gap-6 ml-auto">
-              <span className="flex items-center gap-2 px-3 py-1 rounded-full bg-stone/10 border border-stone/20">
-                <span className="w-2 h-2 rounded-full bg-sage animate-pulse"></span>
+              <span className="flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10">
+                <span className="w-2 h-2 rounded-full bg-gold animate-pulse"></span>
                 Current mood: Sunny skies, busy planting.
               </span>
             </div>

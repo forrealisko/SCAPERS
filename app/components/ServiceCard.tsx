@@ -95,9 +95,9 @@ export default function ServiceCard({ title, description, icon, pricing, details
                 className="relative w-full h-full [transform-style:preserve-3d]"
             >
                 {/* Front Side */}
-                <div className="absolute inset-0 w-full h-full bg-black p-8 rounded-2xl border border-white/10 flex flex-col items-center justify-center text-center [backface-visibility:hidden] hover:border-white/20 transition-all duration-500">
+                <div className="absolute inset-0 w-full h-full bg-[#0E1C13] p-8 rounded-2xl border border-white/10 flex flex-col items-center justify-center text-center [backface-visibility:hidden] hover:border-white/20 transition-all duration-500">
                     <motion.div
-                        className="w-16 h-16 text-sage mb-8"
+                        className="w-16 h-16 text-gold mb-8"
                         variants={iconVariants}
                         animate="idle"
                         whileHover="hover"
@@ -108,14 +108,14 @@ export default function ServiceCard({ title, description, icon, pricing, details
                     <h3 className="text-2xl font-display font-medium text-warm-white mb-4">
                         {title}
                     </h3>
-                    <div className="mt-8 px-6 py-2 rounded-full border border-white/20 text-warm-white/60 text-xs font-bold uppercase tracking-widest group-hover:bg-white group-hover:text-forest transition-all duration-300">
+                    <div className="mt-8 px-6 py-2 rounded-full border border-white/20 text-warm-white/60 text-xs font-bold uppercase tracking-widest group-hover:bg-gold group-hover:text-[#0E1C13] transition-all duration-300">
                         Click to view details
                     </div>
                 </div>
 
                 {/* Back Side */}
-                <div className="service-card-back-glow absolute inset-0 w-full h-full bg-forest p-8 rounded-2xl border border-white/20 flex flex-col text-left [backface-visibility:hidden] [transform:rotateY(180deg)]">
-                    <h4 className="text-xl font-display font-medium text-sage mb-4">{title}</h4>
+                <div className="service-card-back-glow absolute inset-0 w-full h-full bg-deep-green p-8 rounded-2xl border border-white/20 flex flex-col text-left [backface-visibility:hidden] [transform:rotateY(180deg)]">
+                    <h4 className="text-xl font-display font-medium text-gold mb-4">{title}</h4>
                     <p className="text-warm-white/80 text-sm leading-relaxed mb-6">
                         {description}
                     </p>
@@ -129,14 +129,14 @@ export default function ServiceCard({ title, description, icon, pricing, details
                                 transition={{ duration: 0.4, delay: 0.3 + i * 0.08, ease: [0.19, 1, 0.22, 1] }}
                                 className="flex items-center gap-3 text-sm text-warm-white/70"
                             >
-                                <div className="w-1.5 h-1.5 rounded-full bg-sage" />
+                                <div className="w-1.5 h-1.5 rounded-full bg-gold" />
                                 {detail}
                             </motion.div>
                         ))}
                     </div>
 
                     <div className="pt-6 border-t border-white/10 mt-auto flex justify-between items-center">
-                        <span className="text-sage font-bold text-xl">{pricing}</span>
+                        <span className="text-gold font-bold text-xl">{pricing}</span>
                         <div className="text-[10px] text-warm-white/40 uppercase tracking-tighter">Click to flip back</div>
                     </div>
                 </div>

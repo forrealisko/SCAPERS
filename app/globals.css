@@ -1,19 +1,23 @@
 @import "tailwindcss";
 
 @theme {
-  /* Colors */
-  --color-background: #F8F8F6;
-  --color-foreground: #2A2A2A;
-  --color-forest: #283618;
-  --color-sage: #E9EDC9;
-  --color-meadow: #CCD5AE;
-  --color-off-white: #F8F8F6;
-  --color-light-grey: #E8E8E5;
-  --color-black: #0A0A0A;
+  /* Colors — Luxury Green Palette */
+  --color-background: #F8F9F5;
+  --color-foreground: #111A14;
+  --color-forest: #1A2F22;
+  --color-deep-green: #0E1C13;
+  --color-gold: #DAA33F;
+  --color-olive-dark: #2A362B;
+  --color-sage: #8DA392;
+  --color-meadow: #4A6B53;
+  --color-off-white: #F8F9F5;
+  --color-light-grey: #EEF2EB;
+  --color-black: #0E1C13;
   --color-white: #FFFFFF;
-  --color-stone: #9B9891;
-  --color-warm-white: #FFFEF5;
-  --color-terracotta: #C04000;
+  --color-stone: #626E65;
+  --color-warm-white: #FCFDFB;
+  --color-stone-grey: #828C84;
+  --color-beige: #E1E8DC;
 
   /* Typography */
   --font-display: var(--font-fraunces), serif;
@@ -23,10 +27,7 @@
   --ease-signature: cubic-bezier(0.19, 1, 0.22, 1);
 }
 
-/* Hide default cursor universally */
-* {
-  cursor: none !important;
-}
+
 
 /* Global Styles */
 body {
@@ -83,6 +84,6 @@ h6 {
 }
 
 .service-card-back-glow:hover {
-  border-color: rgba(205, 213, 174, 0.6);
-  box-shadow: 0 0 40px rgba(205, 213, 174, 0.15), 0 0 80px rgba(205, 213, 174, 0.05), 0 12px 40px rgba(0, 0, 0, 0.25);
+  border-color: rgba(218, 163, 63, 0.6);
+  box-shadow: 0 0 40px rgba(218, 163, 63, 0.15), 0 0 80px rgba(218, 163, 63, 0.05), 0 12px 40px rgba(0, 0, 0, 0.25);
 }

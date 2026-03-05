@@ -46,8 +46,8 @@ export default function FloatingCTA({ onBookClick }: { onBookClick?: () => void 
                                 className="mb-4 bg-white/90 backdrop-blur-md rounded-2xl shadow-2xl border border-stone/20 overflow-hidden w-[280px] font-sans"
                             >
                                 <div className="p-4 bg-sage/5 border-b border-stone/10">
-                                    <h4 className="font-semibold text-forest flex items-center gap-2">
-                                        <Sparkles size={16} className="text-sage" />
+                                    <h4 className="font-semibold text-[#0E1C13] flex items-center gap-2">
+                                        <Sparkles size={16} className="text-gold" />
                                         Ready to transform?
                                     </h4>
                                 </div>
@@ -55,9 +55,9 @@ export default function FloatingCTA({ onBookClick }: { onBookClick?: () => void 
                                     {/* AI-powered booking via Retell */}
                                     <button
                                         onClick={openRetellWidget}
-                                        className="w-full text-left flex items-center gap-3 p-3 hover:bg-sage/10 rounded-xl transition-colors text-sm font-medium mb-1 text-forest"
+                                        className="w-full text-left flex items-center gap-3 p-3 hover:bg-gold/10 rounded-xl transition-colors text-sm font-medium mb-1 text-[#0E1C13]"
                                     >
-                                        <Phone size={14} className="text-forest/60" />
+                                        <Phone size={14} className="text-[#0E1C13]/60" />
                                         Talk to AI — Book Now
                                     </button>
                                     {/* Fallback: manual booking form */}
@@ -66,14 +66,14 @@ export default function FloatingCTA({ onBookClick }: { onBookClick?: () => void 
                                             setIsExpanded(false);
                                             if (onBookClick) onBookClick();
                                         }}
-                                        className="w-full text-left block p-3 hover:bg-stone/10 rounded-xl transition-colors text-sm font-medium mb-1 text-forest/70"
+                                        className="w-full text-left block p-3 hover:bg-stone/10 rounded-xl transition-colors text-sm font-medium mb-1 text-[#0E1C13]/70"
                                     >
                                         Fill out a form instead
                                     </button>
                                     <a
                                         href="#services"
                                         onClick={() => setIsExpanded(false)}
-                                        className="block p-3 hover:bg-stone/10 rounded-xl transition-colors text-sm font-medium mb-1 text-forest/70"
+                                        className="block p-3 hover:bg-stone/10 rounded-xl transition-colors text-sm font-medium mb-1 text-[#0E1C13]/70"
                                     >
                                         View Pricing
                                     </a>
@@ -91,7 +91,7 @@ export default function FloatingCTA({ onBookClick }: { onBookClick?: () => void 
                         exit={{ scale: 0, opacity: 0 }}
                         whileHover={{ scale: 1.05, y: -2 }}
                         whileTap={{ scale: 0.95 }}
-                        className={`flex items-center gap-2 px-6 py-4 rounded-full shadow-2xl transition-all duration-300 font-medium font-sans ${isExpanded ? "bg-stone text-white" : "bg-forest text-warm-white"
+                        className={`flex items-center gap-2 px-6 py-4 rounded-full shadow-2xl transition-all duration-300 font-medium font-sans ${isExpanded ? "bg-stone text-white" : "bg-gold text-[#0E1C13]"
                             }`}
                     >
                         {isExpanded ? (
